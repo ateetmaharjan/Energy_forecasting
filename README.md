@@ -1,6 +1,6 @@
 # Energy Forecasting
 
-> To see the interactive visualization, go to https://nbviewer.jupyter.org and paste the link of jupyter notebook file https://github.com/ateetmaharjan/Energy_load_forecasting/blob/master/Code_dataprep_model_visualization.ipynb
+> To see the interactive visualization, go to https://nbviewer.jupyter.org and paste the link of jupyter notebook file https://github.com/ateetmaharjan/Energy_forecasting/blob/master/Code_dataprep_model_visualization.ipynb
 
 ![nbviewer](nbviewer.png)
 
