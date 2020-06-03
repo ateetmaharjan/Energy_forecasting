@@ -1,12 +1,18 @@
 # Energy Forecasting
 
-> To see the interactive visualization, go to https://nbviewer.jupyter.org and paste the link of jupyter notebook file https://github.com/ateetmaharjan/Energy_forecasting/blob/master/Code_dataprep_model_visualization.ipynb
+## Before you start
+
+**1. To see the interactive visualization**, <br>
+Go to https://nbviewer.jupyter.org and paste the link of jupyter notebook file https://github.com/ateetmaharjan/Energy_forecasting/blob/master/Code_dataprep_model_visualization.ipynb
 
 ![nbviewer](nbviewer.png)
 
+**2. If you want to interact with the codes and play with it,** <br>
+Go to https://mybinder.org, copy the link of repository https://github.com/ateetmaharjan/Energy_forecasting in the respective github link box, and push launch. It will take a minutes to load.
+
+Or, directly go to this [link](https://gesis.mybinder.org/binder/v2/gh/ateetmaharjan/Energy_forecasting/d176da18fe8a5ae882a269632fa1f1677ace87be) (codes may not have been updated). You will be able to use the codes instantly with all files. No installation required.
+
 ![Demo html graph](demo.png)
-
-
 
 > Also, checkout a demo of an app based on the energy data. However, they need to be changed with updated forecast.
 
@@ -15,6 +21,7 @@
 - https://energy-load.herokuapp.com/
 
 ## Background
+
 As electricity cannot currently be stored in large amounts, supply and demand must always be matched or balanced by system operators. That is why accurate energy demand forecasting plays
 a key role in this. The liberalization of the electricity industry and introduction of competition in recent decades has introduced wholesale electricity markets where suppliers, generators, and traders buy and sell
 energy. Electricity retailers, investment banks, and large energy users trade large
@@ -50,11 +57,10 @@ in the past were "backcasted" (in previous project) and the current project cont
 
 “Forecasting” is the process of exploring the future events that have not been observed or
 determined. On the other hand, “backcasting” typically refers to the process of exploring the past
-events given the information known to date. 
+events given the information known to date.
 
 Objective: To “forecast” the energy consumption for
 the upcoming days (15 days/ a month).
-
 
 ## Backcasting History
 
@@ -63,7 +69,7 @@ Dataset was inverted (based on date) and also partitioned with 70% - 30% trainin
 Models included ARIMA, simple exponential smoothing, Holt’s Linear Trend, and Holt’s Winter and were selected based on the lowest RMSE (root mean square error). Once we had backcasts for all the missing data, the data was then reordered back to its original form.
 
 ## Forecasting Electrical Loads
- 
+
 Prophet model from Facebook was used to forecast. <br>For further information:
 https://facebook.github.io/prophet/
 
@@ -71,16 +77,16 @@ https://facebook.github.io/prophet/
 
 > dont run loop randomly
 
->Do not include holidays for hourly data (Non-daily data)
+> Do not include holidays for hourly data (Non-daily data)
 
-> Changepoints are the points in your data where there are 
-sudden and abrupt changes in the trend. Let Prophet discover changepoints on its own and tweak the number of 
-changepoints (with n_changepoints) as required (read documents before you do)
-
+> Changepoints are the points in your data where there are
+> sudden and abrupt changes in the trend. Let Prophet discover changepoints on its own and tweak the number of
+> changepoints (with n_changepoints) as required (read documents before you do)
 
 ### Seasonality
+
 > seasonality_mode: This parameter indicates how your seasonality components should be integrated with the predictions. <B>ADDITIVE:</B> if seasonality trend is constant over entire period. <B>MULTIPLICATIVE:</B> to increase the importance of the seasonalities over time
-if rate of change is much quicker than in early years
+> if rate of change is much quicker than in early years
 
 > seasonality_prior_scale: 10-25 works well, depending on seasonality in components plot
 
@@ -89,14 +95,13 @@ if rate of change is much quicker than in early years
 > Period = 35 --> what happened will repeat in 35 period interval
 
 > fourier_order: try 10-25 <br>
-Represents number of fourier components each seasonality is composed of.
-
+> Represents number of fourier components each seasonality is composed of.
 
 ### Default model and fitting to dataframe df
 
-model = Prophet()       
+model = Prophet()
 
-model.fit(df) 
+model.fit(df)
 
 ### Check EDA for trend and seasonality and tweak parameters
 
@@ -115,7 +120,7 @@ model = Prophet(
     ).add_seasonality(name="daily", period=1,fourier_order=15
     ).add_seasonality(name="weekly", period=7,fourier_order=20
     ).add_seasonality(name="yearly", period=365.25,fourier_order=20
-    ).add_seasonality(name="quarterly", period=365.25/4, 
+    ).add_seasonality(name="quarterly", period=365.25/4,
                       fourier_order=5, prior_scale=15
     )
 ```
